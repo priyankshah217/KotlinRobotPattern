@@ -16,21 +16,21 @@ abstract class BaseScreen {
         getElement(by)?.click()
     }
 
-    fun enterText(by: By?,value:String) {
+    fun enterText(by: By?, value: String) {
         val webElement = getElement(by)
         webElement?.clear()
         webElement?.sendKeys(value)
     }
 
-    private fun getElement(by: By?): WebElement? {
+    fun waitForElementToBeClickable(by: By?): WebElement {
         val driver: WebDriver? = DriverManager.getDriver()
         val wait = WebDriverWait(driver, 30)
-        val mobileElement = wait.until(ExpectedConditions.elementToBeClickable(by))
-        return if (mobileElement.isDisplayed) {
-            mobileElement
-        } else {
-            null
-        }
+        return wait.until(ExpectedConditions.elementToBeClickable(by))
+    }
+
+    private fun getElement(by: By?): WebElement? {
+        val mobileElement = waitForElementToBeClickable(by)
+        return if (mobileElement.isDisplayed) mobileElement else null
     }
 
     fun elementIsPresent(by: By?): Boolean? {
@@ -41,7 +41,7 @@ abstract class BaseScreen {
         return !elementIsPresent(by)!!
     }
 
-    infix fun  verifyThat(func: () -> Boolean?): BaseScreen = this.apply {
+    infix fun verifyThat(func: () -> Boolean?): BaseScreen = this.apply {
         assertThat(func()).isTrue()
     }
 
