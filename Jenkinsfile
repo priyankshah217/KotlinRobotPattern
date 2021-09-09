@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Runtest') {
+    stage('run test') {
       steps {
         build 'mvn clean test'
       }
