@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Runtest') {
       steps {
-        build 'clean test'
+        build 'mvn clean test'
       }
     }
 
