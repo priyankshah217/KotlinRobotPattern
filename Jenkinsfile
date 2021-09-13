@@ -1,6 +1,6 @@
+def restult_fail=false
 pipeline {
     agent any
-    def restult_fail=false
     stages {
         stage("A") {
             options {
@@ -19,7 +19,7 @@ pipeline {
         stage("B") {
             steps {
                 catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
-                                    if(restult_fail){
+                                    if("${myVariable}"){
                                      error "Error occured"
                                     }
                                     echo "Started stage B"
