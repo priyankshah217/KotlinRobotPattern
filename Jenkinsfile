@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
-                        if (myVariable) {
+                        if (restult_fail) {
                             error "Error occurred"
                         }
                         echo "Started stage B"
