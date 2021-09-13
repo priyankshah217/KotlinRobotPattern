@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    restult_fail=false
 
     stages {
         stage("A") {
@@ -10,6 +11,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
                     echo "Started stage A"
+                    restult_fail = true
                     sleep(time: 5, unit: "SECONDS")
                 }
             }
@@ -17,7 +19,14 @@ pipeline {
 
         stage("B") {
             steps {
-                echo "Started stage B"
+                catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
+                                    if(restult_fail){
+                                     error "Error occured"
+                                    }
+                                    echo "Started stage B"
+                                    sleep(time: 5, unit: "SECONDS")
+                                }
+
             }
         }
     }
