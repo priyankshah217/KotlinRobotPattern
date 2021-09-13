@@ -1,4 +1,5 @@
 def restult_fail = false
+def random_no = 0
 pipeline {
     agent any
     stages {
@@ -12,6 +13,7 @@ pipeline {
                     catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
                         echo "Started stage A"
                         restult_fail = true
+                        random_no = Random.nextInt(100)
                         sleep(time: 5, unit: "SECONDS")
                     }
                 }
@@ -22,7 +24,8 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
-                        if (restult_fail) {
+                        echo "Random no is ${random_no}"
+                        if (random_no % 2 == 0) {
                             error "Error occurred"
                         }
                         echo "Started stage B"
