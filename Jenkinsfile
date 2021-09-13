@@ -13,7 +13,7 @@ pipeline {
                     catchError(buildResult: 'ABORTED', stageResult: 'ABORTED') {
                         echo "Started stage A"
                         restult_fail = true
-                        random_no = Random.nextInt(100)
+                        random_no = new Random().nextInt(100)
                         sleep(time: 5, unit: "SECONDS")
                     }
                 }
