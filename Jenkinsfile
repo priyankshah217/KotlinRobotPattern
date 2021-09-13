@@ -1,7 +1,6 @@
 pipeline {
     agent any
-    restult_fail=false
-
+    def restult_fail=false
     stages {
         stage("A") {
             options {
