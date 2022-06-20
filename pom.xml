@@ -8,7 +8,7 @@
     <artifactId>kotlinrobotpattern</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <properties>
-        <kotlin.version>1.3.41</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <selenium-java.version>4.0.0-alpha-2</selenium-java.version>
         <truth.version>1.0</truth.version>
         <testng.version>7.0.0-beta7</testng.version>
